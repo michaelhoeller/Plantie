@@ -1,13 +1,14 @@
 package main;
 
-import core.FileReader;
-import core.MeasurementHolder;
-import gui.LineChartCreator;
+import gui.DateInput;
 
 public class Main {
-    
-    public static void main(String[] args) throws Exception {
-        // Tester.generateData(50);
-        new LineChartCreator("Test", new MeasurementHolder(new FileReader().getFileString()).getHoldingList());
-    }
+
+	public static void main(String[] args) throws Exception {
+		// Tester.generateData(50);
+		// new LineChartCreator("Test", new MeasurementHolder(new
+		// FileStringReader().getFileString()).getHoldingList());
+		// Date test = new DateInput().getDateFromInput();
+		new DateInput().getTime();
+	}
 }

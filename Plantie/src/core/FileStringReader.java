@@ -10,7 +10,7 @@ import utils.Constant;
 /**
  * @author mhoeller
  */
-public class FileReader {
+public class FileStringReader {
     
     private String fileString;
     
@@ -18,7 +18,7 @@ public class FileReader {
         return fileString;
     }
     
-    public FileReader() throws IOException {
+    public FileStringReader() throws IOException {
         fileString = getDataString();
     }
     
