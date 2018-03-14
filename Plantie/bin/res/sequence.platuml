@@ -1,0 +1,62 @@
+@startuml
+
+
+actor User #green
+participant Main
+participant StartDate As SD
+participant DateInput As DI
+participant FileReader As FR
+participant "Measurement\nHolder" As MH
+participant "StringSplitter" As SS
+participant "Measurement" As Mes
+participant Grapher
+
+autonumber
+
+User 		-> Main:		start\nprogramm
+activate 	Main
+
+Main 		-> SD:			get instance
+activate 	SD
+
+SD 			-> DI:			create
+activate 	DI
+DI			-> User:		request\ninput
+User 		-> DI:			select\ndate
+DI			-> SD:			store
+SD			-> Main:		notify
+deactivate	DI
+Main 		-> FR:			trigger
+activate	FR
+FR			-> FR: 			read document
+FR			-> MH:			new MH(String)
+deactivate	FR
+activate 	MH
+MH			-> SS:			trigger
+activate 	SS
+	SS		-> SS:			Split at >>?<<
+loop "over lines"
+	SS		-> SS:			Split at >>|<<
+	SS		-> SS:			Split measurementValues at >>;<<	
+	SS		-> SS:			Split timeValues at >>;<<		
+	SS		-> Mes:			create NEW
+	activate Mes
+	SS		-> Mes:			insert Values into
+	Mes		-> MH:			insert into
+	deactivate SS
+
+deactivate Mes
+end
+MH			-> Main:		notify
+Main		-> Grapher:		generate\nInfographics
+activate Grapher
+Grapher		-> MH:			request Data
+MH			-> Grapher:		supply
+Grapher		-> SD:			request Data
+SD			-> Grapher:		supply
+deactivate Main
+deactivate 	MH
+deactivate SD
+Grapher		-> User:		Present
+deactivate Grapher
+@enduml
