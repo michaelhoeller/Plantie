@@ -15,8 +15,18 @@ public class Tester {
         Integer hours = 0;
         Integer days = 0;
         
+        Integer tempTemp = 23;
+        Integer tempHum = 50;
+        Integer tempL = 330;
+        Integer tempR = 330;
+        
         for (int i = 0; i < amount; i++) {
-            writer.println(days + ";" + hours + ";" + minutes + ";" + 0 + "|" + r(10, 60) + ";" + r(10, 60) + ";" + r(100, 600) + ";" + r(100, 600) + "?");
+            writer.println(days + ";" + hours + ";" + minutes + ";" + 0 + "|" + tempTemp + ";" + tempHum + ";" + tempL + ";" + tempR + "?");
+            
+            tempTemp = nextVal(tempTemp);
+            tempHum = nextVal(tempHum);
+            tempL = nextVal(tempL);
+            tempR = nextVal(tempR);
             
             minutes += 10;
             if (minutes >= 60) {
@@ -29,6 +39,10 @@ public class Tester {
             }
         }
         writer.close();
+    }
+    
+    private static Integer nextVal(Integer currentVal) {
+        return r(currentVal - 5, currentVal + 5);
     }
     
     private static int r(int min, int max) {

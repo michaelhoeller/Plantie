@@ -36,7 +36,6 @@ package gui;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -69,8 +68,11 @@ public class LineChartCreator extends ApplicationFrame {
         final CategoryDataset dataset = createDataset(mesList);
         final JFreeChart chart = createChart(dataset);
         final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(500, 270));
+        chartPanel.setPreferredSize(new Dimension(1500, 600));
         setContentPane(chartPanel);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
     
     /**
@@ -83,45 +85,22 @@ public class LineChartCreator extends ApplicationFrame {
         // row keys...
         final String series1 = "Temperature";
         final String series2 = "Humidity";
+        final String series3 = "Left";
+        final String series4 = "Right";
+        
+        // Dataset
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
         // column keys...
-        int i = 1;
-        List<String> colNames = new ArrayList<String>();
-        for (Measurement measurement : mesList) {
-            colNames.add("Messung " + i);
+        Integer i = 1;
+        
+        for (Measurement mes : mesList) {
+            dataset.addValue(mes.getTemperature(), series1, i.toString());
+            dataset.addValue(mes.getHumidity(), series2, i.toString());
+            dataset.addValue(mes.getMoistureLeft(), series3, i.toString());
+            dataset.addValue(mes.getMoistureRight(), series4, i.toString());
+            i++;
         }
-        
-        // final String type1 = "Type 1";
-        // final String type2 = "Type 2";
-        // final String type3 = "Type 3";
-        // final String type4 = "Type 4";
-        // final String type5 = "Type 5";
-        // final String type6 = "Type 6";
-        // final String type7 = "Type 7";
-        // final String type8 = "Type 8";
-        
-        // create the dataset...
-        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (String string : colNames) {
-            
-        }
-        dataset.addValue(1.0, series1, type1);
-        dataset.addValue(4.0, series1, type2);
-        dataset.addValue(3.0, series1, type3);
-        dataset.addValue(5.0, series1, type4);
-        dataset.addValue(5.0, series1, type5);
-        dataset.addValue(7.0, series1, type6);
-        dataset.addValue(7.0, series1, type7);
-        dataset.addValue(8.0, series1, type8);
-        
-        dataset.addValue(5.0, series2, type1);
-        dataset.addValue(7.0, series2, type2);
-        dataset.addValue(6.0, series2, type3);
-        dataset.addValue(8.0, series2, type4);
-        dataset.addValue(4.0, series2, type5);
-        dataset.addValue(4.0, series2, type6);
-        dataset.addValue(2.0, series2, type7);
-        dataset.addValue(1.0, series2, type8);
         
         return dataset;
         
@@ -138,8 +117,8 @@ public class LineChartCreator extends ApplicationFrame {
         
         // create the chart...
         final JFreeChart chart = ChartFactory.createLineChart(
-            "Line Chart Demo 1", // chart title
-            "Type", // domain axis label
+            "Temperature | Moisture", // chart title
+            "Zeitpunt", // domain axis label
             "Value", // range axis label
             dataset, // data
             PlotOrientation.VERTICAL, // orientation
@@ -197,20 +176,5 @@ public class LineChartCreator extends ApplicationFrame {
         
         return chart;
     }
-    
-    /**
-     * Starting point for the demonstration application.
-     *
-     * @param args
-     *            ignored.
-     */
-    // public static void main(final String[] args) {
-    //
-    // final LineChartCreator demo = new LineChartCreator("Line Chart Demo");
-    // demo.pack();
-    // RefineryUtilities.centerFrameOnScreen(demo);
-    // demo.setVisible(true);
-    //
-    // }
     
 }
