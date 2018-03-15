@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-import utils.Constant;
+import utils.Constants;
 
 /**
  * @author mhoeller
@@ -24,7 +24,7 @@ public class FileStringReader {
     
     private String getDataString() throws IOException {
         StringBuffer sb = new StringBuffer();
-        try (Stream<String> stream = Files.lines(Paths.get(Constant.FILENAME))) {
+        try (Stream<String> stream = Files.lines(Paths.get(Constants.FILENAME))) {
             Object[] streamArray = stream.toArray();
             for (Object string : streamArray) {
                 sb.append(string);

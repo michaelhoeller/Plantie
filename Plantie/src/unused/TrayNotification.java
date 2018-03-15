@@ -1,4 +1,4 @@
-package utils;
+package unused;
 
 import java.awt.AWTException;
 import java.awt.SystemTray;

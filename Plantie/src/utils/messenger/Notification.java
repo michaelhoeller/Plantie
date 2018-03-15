@@ -1,4 +1,4 @@
-package utils;
+package utils.messenger;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -8,10 +8,12 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import utils.Constants;
+
 public class Notification {
 
 	public Notification(String msg) {
-		ImageIcon imgIco = createImageIcon(Constant.ICONPATH);
+		ImageIcon imgIco = createImageIcon(Constants.ICONPATH);
 		Image converted = getScaledImage(imgIco.getImage(), 40, 40);
 		ImageIcon test = new ImageIcon(converted);
 		JOptionPane.showMessageDialog(null, msg, "Plantie - Information", JOptionPane.INFORMATION_MESSAGE, test);

@@ -58,6 +58,11 @@ import core.Measurement;
 public class LineChartCreator extends ApplicationFrame {
     
     /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    
+    /**
      * Creates a new demo.
      *
      * @param title
