@@ -14,8 +14,11 @@ import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
 import controll.DateControll;
+import controll.MeasurementControll;
+import core.FileStringReader;
 import gui.helper.LayoutHelper;
 import utils.DataGenerator;
+import utils.StringSplitter;
 import utils.messenger.IntegerInput;
 import utils.messenger.Notification;
 
@@ -34,6 +37,7 @@ public class MainPage extends JFrame {
     private JLabel            lblDateLabel;
     private JMenu             mnNewMenu;
     private JMenuItem         mntmGenerateTestData;
+    private JMenuItem         mntmLoadData;
     
     public MainPage() {
         init();
@@ -76,7 +80,7 @@ public class MainPage extends JFrame {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (DateControll.getInstance().isSet() == false) {
-                        new Notification("Please register a start date first");
+                        new Notification("Please register a start date first\nand load the data.txt");
                     }
                 }
             });
@@ -97,6 +101,12 @@ public class MainPage extends JFrame {
     private JMenuItem getMntmMan() {
         if (mntmMan == null) {
             mntmMan = new JMenuItem("Manuell");
+            mntmMan.addActionListener(new ActionListener() {
+                
+                public void actionPerformed(ActionEvent e) {
+                    new LineChartCreator("Test", MeasurementControll.getInstance().getHoldingList());
+                }
+            });
         }
         return mntmMan;
     }
@@ -122,6 +132,7 @@ public class MainPage extends JFrame {
             mnGlobalConfiguration = new JMenu("Global configuration");
             mnGlobalConfiguration.setMnemonic(KeyEvent.VK_C);
             mnGlobalConfiguration.add(getMntmSetStartDate());
+            mnGlobalConfiguration.add(getMntmLoadData());
         }
         return mnGlobalConfiguration;
     }
@@ -178,5 +189,34 @@ public class MainPage extends JFrame {
             });
         }
         return mntmGenerateTestData;
+    }
+    
+    JMenuItem getMntmLoadData() {
+        if (mntmLoadData == null) {
+            mntmLoadData = new JMenuItem("Load data");
+            mntmLoadData.addActionListener(new ActionListener() {
+                
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        new StringSplitter(new FileStringReader().getFileString());
+                        getMnMode().setEnabled(true);
+                    }
+                    catch (Exception e2) {
+                        new Notification("Something went wrong!\nIs the data.txt next to the JAR?");
+                    }
+                }
+            });
+            mntmLoadData.addMouseListener(new MouseAdapter() {
+                
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (DateControll.getInstance().isSet() == false) {
+                        new Notification("Please register a start date first");
+                    }
+                }
+            });
+            mntmLoadData.setEnabled(false);
+        }
+        return mntmLoadData;
     }
 }

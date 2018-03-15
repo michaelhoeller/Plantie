@@ -12,14 +12,14 @@ public class DateCreator {
     private Integer hours;
     private Integer minutes;
     private Integer seconds;
-    private Date    mesDate;
+    
     private Date    startDate;
     
-    public DateCreator(Integer days, Integer hours, Integer minutes, Integer seconds) {
-        setDays(days);
-        setHours(hours);
-        setMinutes(minutes);
-        setSeconds(seconds);
+    public DateCreator(String days, String hours, String minutes, String seconds) {
+        setDays(Integer.parseInt(days));
+        setHours(Integer.parseInt(hours));
+        setMinutes(Integer.parseInt(minutes));
+        setSeconds(Integer.parseInt(seconds));
         if (DateControll.getInstance().isSet()) {
             setStartDate(DateControll.getInstance().getStartDate());
         }
@@ -28,20 +28,31 @@ public class DateCreator {
         }
     }
     
-    private Date addDays(Date date, int days) {
+    private Date addTime(Date date, Integer days, Integer hours, Integer minutes, Integer seconds) {
+        if (days == null) {
+            days = 0;
+        }
+        if (hours == null) {
+            hours = 0;
+        }
+        if (minutes == null) {
+            minutes = 0;
+        }
+        if (seconds == null) {
+            seconds = 0;
+        }
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(date);
-        cal.add(Calendar.DATE, days);
+        cal.add(Calendar.DAY_OF_MONTH, days);
+        cal.add(Calendar.HOUR_OF_DAY, hours);
+        cal.add(Calendar.MINUTE, minutes);
+        cal.add(Calendar.SECOND, seconds);
         
         return cal.getTime();
     }
     
     public Date getMesDate() {
-        return mesDate;
-    }
-    
-    public void setMesDate(Date mesDate) {
-        this.mesDate = mesDate;
+        return addTime(startDate, getDays(), getHours(), getMinutes(), getSeconds());
     }
     
     public Date getStartDate() {

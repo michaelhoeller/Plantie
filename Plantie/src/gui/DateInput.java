@@ -54,9 +54,9 @@ public class DateInput {
                 LocalDateTime ldt = dateTimePicker.getDateTimeStrict();
                 Date retDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
                 if (mP.getLblDateLabel() != null) {
-                    mP.getLblDateLabel().setText(retDate.toString());
+                    mP.getLblDateLabel().setText("Date of first measurement: " + retDate.toString());
                 }
-                mP.getMnMode().setEnabled(true);
+                mP.getMntmLoadData().setEnabled(true);
                 DateControll.getInstance().setStartDate(retDate);
                 new Notification("Time was registered successfull");
                 mP.setEnabled(true);

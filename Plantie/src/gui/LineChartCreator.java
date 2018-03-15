@@ -77,6 +77,7 @@ public class LineChartCreator extends ApplicationFrame {
         setContentPane(chartPanel);
         pack();
         setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
     
@@ -97,14 +98,12 @@ public class LineChartCreator extends ApplicationFrame {
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
         // column keys...
-        Integer i = 1;
         
         for (Measurement mes : mesList) {
-            dataset.addValue(mes.getTemperature(), series1, i.toString());
-            dataset.addValue(mes.getHumidity(), series2, i.toString());
-            dataset.addValue(mes.getMoistureLeft(), series3, i.toString());
-            dataset.addValue(mes.getMoistureRight(), series4, i.toString());
-            i++;
+            dataset.addValue(mes.getTemperature(), series1, mes.getDate().toString());
+            dataset.addValue(mes.getHumidity(), series2, mes.getDate().toString());
+            dataset.addValue(mes.getMoistureLeft(), series3, mes.getDate().toString());
+            dataset.addValue(mes.getMoistureRight(), series4, mes.getDate().toString());
         }
         
         return dataset;
@@ -131,13 +130,6 @@ public class LineChartCreator extends ApplicationFrame {
             true, // tooltips
             false // urls
         );
-        
-        // NOW DO SOME OPTIONAL CUSTOMISATION OF THE CHART...
-        // final StandardLegend legend = (StandardLegend) chart.getLegend();
-        // legend.setDisplaySeriesShapes(true);
-        // legend.setShapeScaleX(1.5);
-        // legend.setShapeScaleY(1.5);
-        // legend.setDisplaySeriesLines(true);
         
         chart.setBackgroundPaint(Color.white);
         
