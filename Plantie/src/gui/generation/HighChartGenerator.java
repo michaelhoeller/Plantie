@@ -118,7 +118,7 @@ public class HighChartGenerator {
         PrintWriter out = new PrintWriter(newHtmlFile);
         out.print(htmlString);
         out.close();
-        
+        new Notification("Chart successfully generated");
         ZoneControl.getInstance().setIsNotified(false);
     }
     

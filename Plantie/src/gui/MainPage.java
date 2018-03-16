@@ -7,9 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
 import control.CenterControl;
+import control.CustomChartControl;
 import control.DateControl;
 import core.FileStringReader;
 import gui.generation.HighChartGenerator;
@@ -34,9 +33,9 @@ public class MainPage extends JFrame {
     private MainPage          mainPage;
     private JMenuBar          mBar;
     private JMenu             mnMode;
-    private JMenuItem         mntmStart;
-    private JMenuItem         mntmMan;
-    private JMenu             mnAuto;
+    private JMenuItem         mntmCreateCustomChart;
+    private JMenuItem         mntmQuickChart;
+    private JMenu             mnCustomChart;
     private JMenuItem         mntmConfiguration;
     private JMenu             mnGlobalConfiguration;
     private JMenuItem         mntmSetStartDate;
@@ -46,6 +45,7 @@ public class MainPage extends JFrame {
     private JMenuItem         mntmLoadData;
     private JMenuItem         mntmPrintErrorLog;
     private JMenuItem         mntmZoneValues;
+    private JMenuItem         mntmStartAutoMode;
     
     public MainPage() {
         init();
@@ -80,7 +80,7 @@ public class MainPage extends JFrame {
     
     JMenu getMnMode() {
         if (mnMode == null) {
-            mnMode = new JMenu("Mode");
+            mnMode = new JMenu("Chart creation");
             mnMode.setMnemonic(KeyEvent.VK_M);
             mnMode.setEnabled(false);
             mnMode.addMouseListener(new MouseAdapter() {
@@ -92,80 +92,70 @@ public class MainPage extends JFrame {
                     }
                 }
             });
-            mnMode.add(getMnAuto());
-            mnMode.add(getMntmMan());
+            mnMode.add(getMntmQuickChart());
+            mnMode.add(getMnCustomChart());
+            mnMode.add(getMntmStartAutoMode());
         }
         return mnMode;
     }
     
-    private JMenuItem getMntmStart() {
-        if (mntmStart == null) {
-            mntmStart = new JMenuItem("Start");
-            mntmStart.addActionListener(new ActionListener() {
+    JMenuItem getMntmCreateCustomChart() {
+        if (mntmCreateCustomChart == null) {
+            mntmCreateCustomChart = new JMenuItem("Create chart");
+            mntmCreateCustomChart.setEnabled(false);
+            mntmCreateCustomChart.addActionListener(new ActionListener() {
                 
                 public void actionPerformed(ActionEvent e) {
-                    HashMap<Integer, Boolean> test = new HashMap<>();
-                    test.put(1, true);
-                    test.put(2, true);
-                    test.put(3, true);
-                    test.put(4, true);
+                    CustomChartControl CCC = CustomChartControl.getInstance();
                     try {
-                        new HighChartGenerator().generateHtmlChart(test, null, null);
+                        new HighChartGenerator().generateHtmlChart(CCC.getChartMap(), CCC.getStartDate(), CCC.getEndDate());
                     }
-                    catch (FileNotFoundException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                    catch (IOException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
+                    catch (Exception e1) {
+                        new Notification("Error during HighChart generation\nCreateCustomChart()");
                     }
                 }
             });
         }
-        return mntmStart;
+        return mntmCreateCustomChart;
     }
     
-    private JMenuItem getMntmMan() {
-        if (mntmMan == null) {
-            mntmMan = new JMenuItem("Manuell");
-            mntmMan.addActionListener(new ActionListener() {
+    private JMenuItem getMntmQuickChart() {
+        if (mntmQuickChart == null) {
+            mntmQuickChart = new JMenuItem("Quick chart");
+            mntmQuickChart.addActionListener(new ActionListener() {
                 
                 public void actionPerformed(ActionEvent e) {
-                    HashMap<Integer, Boolean> test = new HashMap<>();
-                    test.put(1, true);
-                    test.put(2, true);
-                    test.put(3, true);
-                    test.put(4, true);
                     try {
-                        new HighChartGenerator().generateHtmlChart(test, null, null);
+                        new HighChartGenerator().generateHtmlChart(CustomChartControl.getInstance().getChartMapTrue(), null, null);
                     }
-                    catch (FileNotFoundException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                    catch (IOException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
+                    catch (Exception e1) {
+                        new Notification("Error during HighChart generation\nQuickChart");
                     }
                 }
             });
         }
-        return mntmMan;
+        return mntmQuickChart;
     }
     
-    private JMenu getMnAuto() {
-        if (mnAuto == null) {
-            mnAuto = new JMenu("Atutomatic");
-            mnAuto.add(getMntmStart());
-            mnAuto.add(getMntmConfiguration());
+    private JMenu getMnCustomChart() {
+        if (mnCustomChart == null) {
+            mnCustomChart = new JMenu("CustomChart");
+            mnCustomChart.add(getMntmCreateCustomChart());
+            mnCustomChart.add(getMntmConfiguration());
         }
-        return mnAuto;
+        return mnCustomChart;
     }
     
     private JMenuItem getMntmConfiguration() {
         if (mntmConfiguration == null) {
             mntmConfiguration = new JMenuItem("Configuration");
+            mntmConfiguration.addActionListener(new ActionListener() {
+                
+                public void actionPerformed(ActionEvent e) {
+                    mainPage.setEnabled(false);
+                    new DateInputFromTo(mainPage);
+                }
+            });
         }
         return mntmConfiguration;
     }
@@ -174,9 +164,9 @@ public class MainPage extends JFrame {
         if (mnGlobalConfiguration == null) {
             mnGlobalConfiguration = new JMenu("Control Center");
             mnGlobalConfiguration.setMnemonic(KeyEvent.VK_C);
+            mnGlobalConfiguration.add(getMntmZoneValues());
             mnGlobalConfiguration.add(getMntmSetStartDate());
             mnGlobalConfiguration.add(getMntmLoadData());
-            mnGlobalConfiguration.add(getMntmZoneValues());
         }
         return mnGlobalConfiguration;
     }
@@ -197,7 +187,7 @@ public class MainPage extends JFrame {
     
     JLabel getLblDateLabel() {
         if (lblDateLabel == null) {
-            lblDateLabel = new JLabel("No date set - Go to global configuration");
+            lblDateLabel = new JLabel("No start date set - Go to global configuration");
             lblDateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
             lblDateLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
             lblDateLabel.setBounds(10, 206, 414, 23);
@@ -299,5 +289,12 @@ public class MainPage extends JFrame {
             });
         }
         return mntmZoneValues;
+    }
+    
+    private JMenuItem getMntmStartAutoMode() {
+        if (mntmStartAutoMode == null) {
+            mntmStartAutoMode = new JMenuItem("Start auto mode");
+        }
+        return mntmStartAutoMode;
     }
 }

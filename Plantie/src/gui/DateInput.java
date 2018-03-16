@@ -57,9 +57,9 @@ public class DateInput {
                 if (mP.getLblDateLabel() != null) {
                     mP.getLblDateLabel().setText("Date of first measurement: " + DateConverter.conv(retDate).toString());
                 }
+                new Notification("Time was registered successfull");
                 mP.getMntmLoadData().setEnabled(true);
                 DateControl.getInstance().setStartDate(retDate);
-                new Notification("Time was registered successfull");
                 mP.setEnabled(true);
                 frame.dispose();
                 
