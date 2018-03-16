@@ -1,19 +1,19 @@
-package controll;
+package control;
 
 import java.util.Date;
 
-public final class DateControll {
+public final class DateControl {
     
-    private static DateControll INSTANCE = null;
+    private static DateControl INSTANCE = null;
     private Date             startDate;
     private boolean          isSet    = false;
     
-    private DateControll() {
+    private DateControl() {
     }
     
-    public static DateControll getInstance() {
+    public static DateControl getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new DateControll();
+            INSTANCE = new DateControl();
         }
         return INSTANCE;
     }

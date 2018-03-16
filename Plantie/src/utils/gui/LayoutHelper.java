@@ -1,4 +1,4 @@
-package gui.helper;
+package utils.gui;
 
 import java.awt.Toolkit;
 

@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import controll.DateControll;
+import control.DateControl;
 
 public class DateCreator {
     
@@ -20,8 +20,8 @@ public class DateCreator {
         setHours(Integer.parseInt(hours));
         setMinutes(Integer.parseInt(minutes));
         setSeconds(Integer.parseInt(seconds));
-        if (DateControll.getInstance().isSet()) {
-            setStartDate(DateControll.getInstance().getStartDate());
+        if (DateControl.getInstance().isSet()) {
+            setStartDate(DateControl.getInstance().getStartDate());
         }
         else {
             System.out.println("Date not set");

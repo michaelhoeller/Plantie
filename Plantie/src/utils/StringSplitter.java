@@ -3,7 +3,7 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import controll.MeasurementControll;
+import control.MeasurementControl;
 import core.Measurement;
 import utils.messenger.Notification;
 
@@ -39,7 +39,7 @@ public class StringSplitter {
             counter++;
         }
         
-        MeasurementControll.getInstance().setHoldingList(getMesList());
+        MeasurementControl.getInstance().setHoldingList(getMesList());
         new Notification(counter + " datasets have been loaded");
     }
     

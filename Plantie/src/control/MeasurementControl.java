@@ -1,19 +1,22 @@
-package controll;
+package control;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import core.Measurement;
 
-public class MeasurementControll {
+public final class MeasurementControl {
     
-    private static MeasurementControll INSTANCE    = null;
-    private List<Measurement>          holdingList = new ArrayList<Measurement>();
-    private boolean                    isSet       = false;
+    private static MeasurementControl INSTANCE    = null;
+    private List<Measurement>         holdingList = new ArrayList<Measurement>();
+    private boolean                   isSet       = false;
     
-    public static MeasurementControll getInstance() {
+    private MeasurementControl() {
+    }
+    
+    public static MeasurementControl getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new MeasurementControll();
+            INSTANCE = new MeasurementControl();
         }
         return INSTANCE;
     }

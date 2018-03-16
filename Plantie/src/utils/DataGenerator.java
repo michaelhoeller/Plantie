@@ -44,7 +44,7 @@ public class DataGenerator {
     }
     
     private static Integer nextVal(Integer currentVal) {
-        return r(currentVal - 5, currentVal + 5);
+        return r(currentVal - 1, currentVal + 1);
     }
     
     private static int r(int min, int max) {

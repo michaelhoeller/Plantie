@@ -15,8 +15,9 @@ import com.github.lgooddatepicker.components.DateTimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
 import com.github.lgooddatepicker.components.TimePickerSettings.TimeIncrement;
 
-import controll.DateControll;
-import gui.helper.LayoutHelper;
+import control.DateControl;
+import utils.DateConverter;
+import utils.gui.LayoutHelper;
 import utils.messenger.Notification;
 
 public class DateInput {
@@ -37,7 +38,7 @@ public class DateInput {
         
         timeSettings.setAllowEmptyTimes(false);
         timeSettings.use24HourClockFormat();
-        timeSettings.initialTime = LocalTime.of(15, 30);
+        timeSettings.initialTime = LocalTime.NOON;
         timeSettings.generatePotentialMenuTimes(TimeIncrement.OneHour, null, null);
         timeSettings.setAllowKeyboardEditing(false);
         
@@ -54,10 +55,10 @@ public class DateInput {
                 LocalDateTime ldt = dateTimePicker.getDateTimeStrict();
                 Date retDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
                 if (mP.getLblDateLabel() != null) {
-                    mP.getLblDateLabel().setText("Date of first measurement: " + retDate.toString());
+                    mP.getLblDateLabel().setText("Date of first measurement: " + DateConverter.conv(retDate).toString());
                 }
                 mP.getMntmLoadData().setEnabled(true);
-                DateControll.getInstance().setStartDate(retDate);
+                DateControl.getInstance().setStartDate(retDate);
                 new Notification("Time was registered successfull");
                 mP.setEnabled(true);
                 frame.dispose();

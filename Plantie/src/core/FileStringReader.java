@@ -1,5 +1,6 @@
 package core;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,17 +13,7 @@ import utils.Constants;
  */
 public class FileStringReader {
     
-    private String fileString;
-    
-    public String getFileString() {
-        return fileString;
-    }
-    
-    public FileStringReader() throws IOException {
-        fileString = getDataString();
-    }
-    
-    private String getDataString() throws IOException {
+    public String getDataString() throws IOException {
         StringBuffer sb = new StringBuffer();
         try (Stream<String> stream = Files.lines(Paths.get(Constants.FILENAME))) {
             Object[] streamArray = stream.toArray();
@@ -31,6 +22,11 @@ public class FileStringReader {
             }
         }
         return sb.toString();
+    }
+    
+    public String getHtmlString(File f) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(f.getPath()));
+        return new String(encoded, "UTF-8");
     }
     
 }
