@@ -1,8 +1,13 @@
-Notification at: 16.03.18 16:35 Time was registered successfull
-Notification at: 16.03.18 16:35 100 datasets have been loaded
-Notification at: 16.03.18 16:35 Zone control values saved
-Notification at: 16.03.18 16:35 No custom value areas specified!
-Using default values instead.
-Notification at: 16.03.18 16:36 Zone control values saved
-Notification at: 16.03.18 16:36 No custom value areas specified!
-Using default values instead.
+Notification at 18.03.18 15:23:31:
+500 values generated
+----------------------------------------------------------------------
+Notification at 18.03.18 15:23:31:
+500 datasets have been loaded
+----------------------------------------------------------------------
+SuperNotification at 18.03.18 15:23:42:
+Waiting for thread to finish!
+This can take some time
+----------------------------------------------------------------------
+Notification at 18.03.18 15:24:15:
+Thread finished
+----------------------------------------------------------------------

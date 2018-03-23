@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 
 import control.CenterControl;
@@ -14,17 +15,20 @@ import gui.MainPage;
 import utils.Constants;
 import utils.DateConverter;
 
-public class Notification {
+public class SuperNotification extends JEditorPane {
+	private static final long serialVersionUID = 1L;
 
-	public Notification(String msg) {
-		if (!CenterControl.getInstance().isAutoMode() && CenterControl.getInstance().isNotificationsWanted()) {
-			ImageIcon imgIco = createImageIcon(Constants.ICONPATH);
-			Image converted = getScaledImage(imgIco.getImage(), 40, 40);
-			ImageIcon test = new ImageIcon(converted);
-			JOptionPane.showMessageDialog(null, msg, "Plantie - Information", JOptionPane.INFORMATION_MESSAGE, test);
-		}
+	public SuperNotification(String string1, String string2) {
+		super(string1, string2);
+	}
+
+	public SuperNotification(String msg) {
+		ImageIcon imgIco = createImageIcon(Constants.ICONPATH);
+		Image converted = getScaledImage(imgIco.getImage(), 40, 40);
+		ImageIcon test = new ImageIcon(converted);
+		JOptionPane.showMessageDialog(null, msg, "Plantie - Information", JOptionPane.INFORMATION_MESSAGE, test);
 		CenterControl.getInstance()
-				.addErrorString("Notification at " + DateConverter.convWithS(new Date()).toString() + ":\n" + msg);
+				.addErrorString("SuperNotification at " + DateConverter.convWithS(new Date()).toString() + ":\n" + msg);
 		ScrollPane.update(MainPage.getMainPage());
 	}
 
