@@ -1,13 +1,63 @@
-Notification at 18.03.18 15:23:31:
-500 values generated
+Notification at 23.03.18 13:40:50:
+10 values generated
 ----------------------------------------------------------------------
-Notification at 18.03.18 15:23:31:
-500 datasets have been loaded
+Notification at 23.03.18 13:40:56:
+Please register a start date first
+and load the data.txt
 ----------------------------------------------------------------------
-SuperNotification at 18.03.18 15:23:42:
+Notification at 23.03.18 13:40:58:
+Please register a start date first
+and load the data.txt
+----------------------------------------------------------------------
+Notification at 23.03.18 13:41:04:
+Zone control values saved
+----------------------------------------------------------------------
+Notification at 23.03.18 13:41:09:
+Time was registered successfull
+----------------------------------------------------------------------
+Notification at 23.03.18 13:41:29:
+10 datasets have been loaded
+----------------------------------------------------------------------
+Notification at 23.03.18 13:42:34:
+10 datasets have been loaded
+----------------------------------------------------------------------
+Notification at 23.03.18 13:42:44:
+Chart successfully generated
+----------------------------------------------------------------------
+Notification at 23.03.18 13:42:45:
+connection established
+----------------------------------------------------------------------
+Notification at 23.03.18 13:42:45:
+File uploaded successfully!
+----------------------------------------------------------------------
+Notification at 23.03.18 13:43:45:
+12 datasets have been loaded
+----------------------------------------------------------------------
+Notification at 23.03.18 13:43:55:
+Chart successfully generated
+----------------------------------------------------------------------
+Notification at 23.03.18 13:43:55:
+connection established
+----------------------------------------------------------------------
+Notification at 23.03.18 13:43:55:
+File uploaded successfully!
+----------------------------------------------------------------------
+SuperNotification at 23.03.18 13:44:17:
 Waiting for thread to finish!
 This can take some time
 ----------------------------------------------------------------------
-Notification at 18.03.18 15:24:15:
+Notification at 23.03.18 13:44:55:
+12 datasets have been loaded
+----------------------------------------------------------------------
+Notification at 23.03.18 13:45:05:
+Chart successfully generated
+----------------------------------------------------------------------
+Notification at 23.03.18 13:45:05:
+connection established
+----------------------------------------------------------------------
+Notification at 23.03.18 13:45:05:
+File uploaded successfully!
+----------------------------------------------------------------------
+Notification at 23.03.18 13:45:05:
 Thread finished
 ----------------------------------------------------------------------

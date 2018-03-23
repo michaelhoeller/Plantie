@@ -57,11 +57,11 @@
 						text : 'Plantie - Infographix'
 					},
 					subtitle: {
-					    text: 'Generated from 500 datasets'
+					    text: 'Generated from 12 datasets'
 					},
 					xAxis : {
 						type: 'datetime',
-						categories : [ '18.03.18 15:07', '18.03.18 15:17', '18.03.18 15:27', '18.03.18 15:37', '18.03.18 15:47', '18.03.18 15:57',  ]
+						categories : [ '23.03.18 12:00', '23.03.18 12:10', '23.03.18 12:20', '23.03.18 12:30', '23.03.18 12:40', '23.03.18 12:50', '23.03.18 13:00', '23.03.18 13:10', '23.03.18 13:20', '23.03.18 13:30', '23.03.18 13:40', '23.03.18 13:50',  ]
 					},
 					yAxis : {
 						title : {
@@ -69,8 +69,13 @@
 						}
 					},
 					series : [ {name: 'Temperature', lineWidth: 0.7,
-                     data: [24, 27, 29, 32, 33, 36, ], zones : [ {value : 99, color : '#0b63ef'}, {value : 100, color : '#2ca51c'}, {color : '#e51010'}]},
- ]
+                     data: [23, 21, 23, 25, 23, 20, 21, 21, 24, 27, 27, 222, ], zones : [ {value : 22, color : '#0b63ef'}, {value : 26, color : '#2ca51c'}, {color : '#e51010'}]},
+{name: 'Humidity', lineWidth: 0.7,
+                     data: [50, 48, 50, 53, 51, 54, 55, 55, 54, 57, 57, 1, ], zones : [ {value : 40, color : '#0b63ef'}, {value : 60, color : '#2ca51c'}, {color : '#e51010'}]},
+{name: 'Waterlevel left', lineWidth: 0.7,
+                     data: [330, 330, 327, 330, 328, 327, 325, 326, 328, 330, 330, 330, ], zones : [ {value : 250, color : '#0b63ef'}, {value : 350, color : '#2ca51c'}, {color : '#e51010'}]},
+{name: 'Waterlevel right', lineWidth: 0.7,
+                     data: [2, 3, 11, 22, 222, 333, 330, 327, 326, 328, 328, 328, ], zones : [ {value : 250, color : '#0b63ef'}, {value : 350, color : '#2ca51c'}, {color : '#e51010'}]}, ]
 				});
 			});
 		</script>
