@@ -1,11 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plantie</title>
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="57x57"
+	href="res/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60"
+	href="res/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="res/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="res/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="res/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="res/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144"
+	href="res/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="res/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="res/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="res/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192"
+	href="res/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="res/favicon-16x16.png">
+<link rel="manifest" href="res/site.webmanifest">
+<link rel="mask-icon" href="res/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="res/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="res/mstile-144x144.png">
+<meta name="msapplication-config" content="res/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 <body>
 	<div id="container" style="width: 100%; height: 700px;">
@@ -13,25 +50,27 @@
 			$(function() {
 				var myChart = Highcharts.chart('container', {
 					chart : {
-						type : 'line'
+						type : 'line',
+						zoomType: 'x'
 					},
 					title : {
 						text : 'Plantie - Infographix'
 					},
+					subtitle: {
+					    text: 'Generated from 500 datasets'
+					},
 					xAxis : {
-						categories : [ '16.03.18 12:00', '16.03.18 12:10', '16.03.18 12:20', '16.03.18 12:30', '16.03.18 12:40', '16.03.18 12:50', '16.03.18 13:00',  ]
+						type: 'datetime',
+						categories : [ '18.03.18 15:07', '18.03.18 15:17', '18.03.18 15:27', '18.03.18 15:37', '18.03.18 15:47', '18.03.18 15:57',  ]
 					},
 					yAxis : {
 						title : {
 							text : 'Value'
 						}
 					},
-					series : [ {name: 'Temperature',
-data: [30, 29, 29, 28, 29, 30, 29, ]},
-{name: 'Waterlevel left',
-data: [326, 327, 328, 327, 327, 326, 327, ]},
-{name: 'Waterlevel right',
-data: [330, 330, 330, 329, 328, 328, 327, ]}, ]
+					series : [ {name: 'Temperature', lineWidth: 0.7,
+                     data: [24, 27, 29, 32, 33, 36, ], zones : [ {value : 99, color : '#0b63ef'}, {value : 100, color : '#2ca51c'}, {color : '#e51010'}]},
+ ]
 				});
 			});
 		</script>

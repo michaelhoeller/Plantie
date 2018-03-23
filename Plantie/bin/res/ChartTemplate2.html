@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Plantie</title>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="container" style="width: 100%; height: 700px;">
+		<script>
+			$(function() {
+				var myChart = Highcharts.chart('container', {
+					chart : {
+						type : 'line'
+					},
+					title : {
+						text : 'Plantie - Infographix'
+					},
+					xAxis : {
+						categories : [ $timeStamp ]
+					},
+					yAxis : {
+						title : {
+							text : 'Value'
+						}
+					},
+					series : [ $series ]
+				});
+			});
+		</script>
+	</div>
+</body>
+</html>
